@@ -21,6 +21,27 @@ angular.module('starter.services', [])
                 d.resolve(forecast);
             });
             return d.promise;
+        },
+        searchCity: function (params) {
+            var key = '5c40c72b9b544023b9b74029162111';
+            var d = $q.defer();
+            $http({
+                method: 'GET',
+                url: 'http://api.apixu.com/v1/search.json',
+                params: {
+                    key: key,
+                    q: params.query,
+                    days: '7'
+                }
+            }).then(function (data) {
+                console.log(data);
+                var search = data.data[1];
+                d.resolve(search);
+                console.log(search)
+
+                d.resolve(search);
+            });
+            return d.promise;
         }
     }
 })

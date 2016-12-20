@@ -43,11 +43,40 @@ angular.module('starter.controllers', [])
 
 
 .controller('PlaylistsCtrl', function($scope, API) {
-  API.getWeatherForecast($scope.searchSettings).then(function (forecast) {
+  $scope.SerchedCity ={
+    query : 'Odessa Ukraine'
+  };
+  API.getWeatherForecast($scope.SerchedCity).then(function (forecast) {
     $scope.forecast = forecast;
     /*      console.log(forecast);*/
   });
 })
+
+
+    .controller('SearchController', function ($scope, API) {
+
+      $scope.SerchedCity ={
+        query : 'Kiev'
+      };
+
+
+      $scope.searchCity = function () {
+        API.searchCity($scope.SerchedCity).then(function (search) {
+          console.log(search);
+          $scope.serched = search;
+          console.log($scope.serched.name)
+        })
+        API.getWeatherForecast($scope.SerchedCity).then(function (forecast) {
+          $scope.forecast = forecast;
+          /*      console.log(forecast);*/
+        });
+      }
+
+
+     $scope.forecast = []
+      $scope.serched = []
+    })
+
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })

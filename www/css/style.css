@@ -1,1 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.forecastDate {
+    display: inline-block;
+    text-align: center;
+    margin-left: 50px;
+    margin-top: 4px;
+}
